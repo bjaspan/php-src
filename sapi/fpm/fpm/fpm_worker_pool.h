@@ -40,8 +40,9 @@ struct fpm_worker_pool_s {
 	char **limit_extensions;
 
 	/* for ondemand PM */
-	struct fpm_event_s *ondemand_event;
+        struct fpm_event_s *ondemand_event, *child_accept_event;
 	int socket_event_set;
+        int child_accept_pipe[2];
 
 #ifdef HAVE_FPM_ACL
 	void *socket_acl;
@@ -55,4 +56,3 @@ int fpm_worker_pool_init_main();
 extern struct fpm_worker_pool_s *fpm_worker_all_pools;
 
 #endif
-
